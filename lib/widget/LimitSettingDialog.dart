@@ -5,7 +5,6 @@ import 'package:flutter_sample/Utils/SharedUtil.dart';
 class LimitSettingDialog extends StatefulWidget {
   final Function onConfirmClick;
   final Function onCancelClick;
-
   final int limitType;
   static const int MONTHLIMIT = 0;
   static const int DAYLIMIT = 1;

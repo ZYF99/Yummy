@@ -19,29 +19,27 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Sample App',
+      title: 'Yummy',
       theme: new ThemeData(
         primarySwatch: Colors.orange,
       ),
-      home: MyHomePage(),
+      home: NavigationPage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
+class NavigationPage extends StatefulWidget {
+  NavigationPage({Key key}) : super(key: key);
 
   @override
-  MyHomePageState createState() => MyHomePageState();
+  NavigationPageState createState() => NavigationPageState();
 }
 
-class MyHomePageState extends State<MyHomePage> {
-  final GlobalKey<HomePageState> datePageKey = GlobalKey();
+class NavigationPageState extends State<NavigationPage> {
+  final GlobalKey<HomePageState> homePageKey = GlobalKey();
   static int _navigatorSelectedIndex = 0;
 
   @override
@@ -52,7 +50,7 @@ class MyHomePageState extends State<MyHomePage> {
   List<Widget> _navigatorPage() {
     return <Widget>[
       HomePage(
-        key: datePageKey,
+        key: homePageKey,
       ),
       null,
       MinePage()
@@ -116,12 +114,18 @@ class MyHomePageState extends State<MyHomePage> {
       builder: (BuildContext context) {
         return RecordSheet(
           onConfirmClick: () {
-            datePageKey.currentState.changeState();
+
+
+
+            homePageKey.currentState.changeState();
           },
         );
       },
     );
   }
+
+
+
 }
 
 //添加记录的弹窗
@@ -236,7 +240,7 @@ class RecordSheetState extends State<RecordSheet> {
 
   Future<Null> _add() async {
     if (_type != "选择类型" && textController.text.length > 0) {
-      Cost cost = new Cost();
+      Cost cost = Cost();
       cost.dateTime = DateTime.now().millisecondsSinceEpoch;
       cost.name = _type;
       cost.money = double.parse(textController.text);
